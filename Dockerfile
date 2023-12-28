@@ -5,7 +5,7 @@ COPY backend .
 RUN go mod download
 RUN go build -o back cmd/main.go
 
-FROM alpine:3.16
+FROM alpine:3.18
 WORKDIR /docker
 COPY --from=builder /docker/back .
 COPY /backend/config/config.yml /docker/config/config.yml
