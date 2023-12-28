@@ -26,6 +26,7 @@
 - docker-compose up
 
 ## Installation guide for the frontend:
+(Use Node.js v18)
 
 - cd frontend
 - npm install
