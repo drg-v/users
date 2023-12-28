@@ -1,0 +1,65 @@
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+  goconst:
+    min-len: 2
+    min-occurrences: 3
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - hugeParam
+      - rangeValCopy
+      - typeDefFirst
+      - paramTypeCombine
+
+  govet:
+    check-shadowing: true
+  nolintlint:
+    require-explanation: true
+    require-specific: true
+
+  dupl:
+    threshold: 200
+
+linters:
+  disable-all: true
+  enable:
+    - bodyclose
+    - dogsled
+    - dupl
+    - errcheck
+    - exportloopref
+    - exhaustive
+    - goconst
+    - gocritic
+    - gofmt
+    - goimports
+    - gocyclo
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - misspell
+    - nolintlint
+    - nakedret
+    - prealloc
+    - predeclared
+    - revive
+    - staticcheck
+    - stylecheck
+    - thelper
+    - tparallel
+    - typecheck
+    - unconvert
+    - unparam
+    - whitespace
+    - wsl
+
+run:
+  go: "1.21.5"
+  timeout: 3m

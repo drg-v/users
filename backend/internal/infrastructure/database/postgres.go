@@ -2,9 +2,11 @@ package database
 
 import (
 	"fmt"
+	"users/config"
+	"users/internal/models"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"users/config"
 )
 
 func NewPostgresDB(cfg *config.Config) (*gorm.DB, error) {
@@ -26,9 +28,11 @@ func NewPostgresDB(cfg *config.Config) (*gorm.DB, error) {
 		return nil, err
 	}
 
-	//if err := db.AutoMigrate(); err != nil {
-	//	return nil, err
-	//}
+	if err := db.AutoMigrate(
+		&models.User{},
+	); err != nil {
+		return nil, err
+	}
 
 	return db, nil
 }

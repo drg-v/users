@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"users/config"
 	"users/internal/service"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Controller struct {
@@ -38,7 +39,13 @@ func (h *Controller) InitRouter(port string) error {
 	router := gin.Default()
 
 	router.Use(CORSMiddleware())
-	// gr := router.Group("/api/v1")
+	gr := router.Group("/api/v1")
+
+	users := gr.Group("/users")
+	users.GET("", h.getAllUsers)
+	users.POST("", h.createUser)
+	users.PATCH("/:id", h.updateUser)
+	users.DELETE("/:id", h.deleteUser)
 
 	return router.Run(port)
 }

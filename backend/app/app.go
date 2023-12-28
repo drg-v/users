@@ -13,13 +13,14 @@ func Run() error {
 	cfg := config.GetConfig()
 
 	fmt.Println(cfg)
+
 	db, err := database.NewPostgresDB(cfg)
 	if err != nil {
 		panic(err)
 	}
 
-	rpsrs := repositories.NewRepository(db, cfg)
-	srvcs := service.NewService(rpsrs, cfg)
+	rpsrs := repositories.NewRepository(db)
+	srvcs := service.NewService(rpsrs)
 	cntrs := controllers.NewController(srvcs, cfg)
 
 	err = cntrs.InitRouter(cfg.App.Port)
