@@ -35,7 +35,7 @@ func (s *UserService) GetAll(ctx context.Context, page int, pageSize int) ([]dom
 		return nil, err
 	}
 
-	users := make([]domain.User, len(userModels))
+	users := make([]domain.User, 0)
 
 	for _, model := range userModels {
 		user := domain.User{
