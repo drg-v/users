@@ -1,9 +1,22 @@
 version: '3.9'
 services:
+  back:
+    restart: always
+    build: ./
+    command: ./back
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '8000:8000'
   db:
     restart: always
     image: postgres:latest
-
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     environment:
       POSTGRES_PASSWORD: 'qwerty'
     ports:
